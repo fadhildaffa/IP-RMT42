@@ -10,7 +10,7 @@ async function fecthData(){
                 'x-rapidapi-host': 'v3.football.api-sports.io'
             },
             params: {
-                "team": "38",
+                "team": "41",
                 "season": "2021",
                 "league": "39"
                 }
