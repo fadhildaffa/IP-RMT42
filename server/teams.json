@@ -108,6 +108,17 @@
         "clean_sheet": 4,
         "failed_to_score": 18,
         "authodId": 1
+    },
+    {
+        "name": "Wolves",
+        "logo": "https://media-4.api-sports.io/football/leagues/39.png",
+        "win": 15,
+        "draw": 6,
+        "lose": 17,
+        "goal_average": 1.0,
+        "clean_sheet": 11,
+        "failed_to_score": 16,
+        "authodId": 1
     }
     
 ]
