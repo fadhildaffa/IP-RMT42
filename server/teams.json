@@ -119,6 +119,17 @@
         "clean_sheet": 11,
         "failed_to_score": 16,
         "authodId": 1
+    },
+    {
+        "name": "Southampton",
+        "logo": "https://media-4.api-sports.io/football/leagues/41.png",
+        "win": 9,
+        "draw": 3,
+        "lose": 16,
+        "goal_average": 1.1,
+        "clean_sheet": 10,
+        "failed_to_score": 15,
+        "authodId": 1
     }
     
 ]
