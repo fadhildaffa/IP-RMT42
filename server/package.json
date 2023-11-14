@@ -4,7 +4,7 @@
   "description": "",
   "main": "getdata.js",
   "scripts": {
-    "test": "npx jest --detectOpenHandles --forceExit --coverage",
+    "test": "npx jest --detectOpenHandles --forceExit",
     "run": "npx nodemon bin/www"
   },
   "keywords": [],
