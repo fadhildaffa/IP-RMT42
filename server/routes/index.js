@@ -11,6 +11,7 @@ router.post('/login', UserController.userLogin)
 
 router.use(authentication)
 router.get('/teams', TeamContoller.getTeams)
+router.post('/teams', TeamContoller.createTeam)
 
 
 
