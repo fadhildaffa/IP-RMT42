@@ -25,6 +25,19 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
+
+    // const {data} = await axios.get("https://v3.football.api-sports.io/teams/statistics", {
+    //         headers:{
+    //             'x-rapidapi-key': process.env.XRAPIDAPIKEY,
+    //             'x-rapidapi-host': 'v3.football.api-sports.io'
+    //         },
+    //         params: {
+    //             "team": "41",
+    //             "season": "2021",
+    //             "league": "39"
+    //             }
+    //     })
+    //     console.log(JSON.stringify(data))
     let data = require('../teams.json');
     data.forEach((el) => {
       el.createdAt = el.updatedAt = new Date();

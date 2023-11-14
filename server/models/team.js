@@ -15,7 +15,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Team.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Name is required"
+        },
+        notNull: {
+          msg: "Name is required"
+        }
+      }
+    },
     win: {
       type: DataTypes.INTEGER,
       allowNull: false,
