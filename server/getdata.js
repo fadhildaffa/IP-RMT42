@@ -20,7 +20,4 @@ async function fecthData(){
         console.log(error)
     }
 }
-
-fecthData();
-
-module.exports = fecthData;
+fecthData()
