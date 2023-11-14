@@ -9,7 +9,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 
-router.post('/', UserController.createUser)
+router.post('/register', UserController.createUser)
 router.post('/login', UserController.userLogin)
 
 
