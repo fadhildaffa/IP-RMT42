@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         notNull:{
           msg: "Email is required"
+        },
+        isEmail: {
+          msg: "must be an email"
         }
       }
     },

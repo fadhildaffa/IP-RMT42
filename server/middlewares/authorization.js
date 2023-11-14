@@ -1,8 +1,7 @@
 const {Team} = require('../models')
 async function authorizationAdd(req, res, next) {
     try {
-        const { role } = req.user
-        if (role !== "admin" || role !== "staff") throw ({ name: "Forbidden" })
+        if (req.user.role === "visitor") throw ({ name: "Forbidden" })
         next()
     } catch (error) {
         next(error)

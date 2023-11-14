@@ -7,9 +7,6 @@ class UserController {
     static async createUser(req, res, next) {
         try {
             const {email, password} = req.body;
-            
-            if(!email) throw ({name:"NullEmail"})
-            if(!password) throw ({name:"NullPassword"})
 
             const userCreate = await User.create({email, password})
             res.status(201).json({
