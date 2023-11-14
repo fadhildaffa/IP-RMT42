@@ -11,18 +11,117 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Team.belongsTo(models.User, {foreignKey: "authorId"})
     }
   }
   Team.init({
     name: DataTypes.STRING,
-    win: DataTypes.INTEGER,
-    draw: DataTypes.INTEGER,
-    lose: DataTypes.INTEGER,
+    win: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Win is required"
+        },
+        notNull: {
+          msg: "Win is required"
+        },
+        isNumeric:{
+          msg: "Win must be a number"
+        }
+      }
+    },
+    draw: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Draw is required"
+        },
+        notNull: {
+          msg: "Draw is required"
+        },
+        isNumeric:{
+          msg: "Draw must be a number"
+        }
+      }
+    },
+    lose: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Lose is required"
+        },
+        notNull: {
+          msg: "Lose is required"
+        },
+        isNumeric:{
+          msg: "Lose must be a number"
+        }
+      }
+    },
     logo: DataTypes.STRING,
-    clean_sheet: DataTypes.INTEGER,
-    goal_average: DataTypes.INTEGER,
-    failed_to_score: DataTypes.INTEGER,
-    authorId: DataTypes.INTEGER
+    clean_sheet: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Clean Sheet is required"
+        },
+        notNull: {
+          msg: "Clean Sheet is required"
+        },
+        isNumeric:{
+          msg: "Clean Sheet must be a number"
+        }
+      }
+    },
+    goal_average: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Average Goal is required"
+        },
+        notNull: {
+          msg: "Average Goal is required"
+        },
+        isNumeric:{
+          msg: "Average Goal must be a number"
+        }
+      }
+    },
+    failed_to_score: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Fail to Score is required"
+        },
+        notNull: {
+          msg: "Fail to Score is required"
+        },
+        isNumeric:{
+          msg: "Fail to Score must be a number"
+        }
+      }
+    },
+    authorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Author Id is required"
+        },
+        notNull: {
+          msg: "Author Id is required"
+        },
+        isNumeric:{
+          msg: "Author Id must be a number"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Team',

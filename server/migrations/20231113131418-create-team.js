@@ -33,9 +33,6 @@ module.exports = {
       failed_to_score: {
         type: Sequelize.INTEGER
       },
-      goal_againts: {
-        type: Sequelize.INTEGER
-      },
       authorId: {
         type: Sequelize.INTEGER,
         references: {
