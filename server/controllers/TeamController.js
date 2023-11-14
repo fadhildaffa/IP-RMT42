@@ -65,7 +65,7 @@ class TeamController {
             const team = await Team.findByPk(id);
             if(!team) throw ({name: "NotFound"});
             await team.update({name, win, draw, lose, logo, clean_sheet, goal_average, failed_to_score});
-            res.status(200).json({message: `Team ${teams.name} have been updated`})
+            res.status(200).json(team)
         } catch (error) {
             next(error)
         }
