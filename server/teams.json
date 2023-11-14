@@ -8,7 +8,7 @@
         "goal_average": 1.5,
         "clean_sheet": 8,
         "failed_to_score": 9,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Liverpool",
@@ -19,7 +19,7 @@
         "goal_average": 2.5,
         "clean_sheet": 21,
         "failed_to_score": 1,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Arsenal",
@@ -30,7 +30,7 @@
         "goal_average": 1.6,
         "clean_sheet": 13,
         "failed_to_score": 11,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Tottenham",
@@ -41,7 +41,7 @@
         "goal_average": 1.8,
         "clean_sheet": 16,
         "failed_to_score": 10,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Chelsea",
@@ -52,7 +52,7 @@
         "goal_average": 2.0,
         "clean_sheet": 16,
         "failed_to_score": 4,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Manchester City",
@@ -63,7 +63,7 @@
         "goal_average": 2.6,
         "clean_sheet": 21,
         "failed_to_score": 4,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Brighton",
@@ -74,7 +74,7 @@
         "goal_average": 1.1,
         "clean_sheet": 11,
         "failed_to_score": 13,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Crystal Palace",
@@ -85,7 +85,7 @@
         "goal_average": 1.3,
         "clean_sheet": 12,
         "failed_to_score": 6,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Newcastle",
@@ -96,7 +96,7 @@
         "goal_average": 1.2,
         "clean_sheet": 8,
         "failed_to_score": 9,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Watford",
@@ -107,7 +107,7 @@
         "goal_average": 0.9,
         "clean_sheet": 4,
         "failed_to_score": 18,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Wolves",
@@ -118,7 +118,7 @@
         "goal_average": 1.0,
         "clean_sheet": 11,
         "failed_to_score": 16,
-        "authodId": 1
+        "authorId": 1
     },
     {
         "name": "Southampton",
@@ -129,7 +129,7 @@
         "goal_average": 1.1,
         "clean_sheet": 10,
         "failed_to_score": 15,
-        "authodId": 1
+        "authorId": 1
     }
     
 ]

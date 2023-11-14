@@ -1,30 +1,35 @@
 'use strict';
-const app = require('../app')
+// const app = require('../app')
 
-const axios = require('axios');
+// const axios = require('axios');
 
-async function fecthData(){
-    try {
-        const {data} = await axios.get("https://v3.football.api-sports.io/teams/statistics", {
-            headers:{
-                'x-rapidapi-key': process.env.XRAPIDAPIKEY,
-                'x-rapidapi-host': 'v3.football.api-sports.io'
-            },
-            params: {
-                "team": "41",
-                "season": "2021",
-                "league": "39"
-                }
-        })
-        console.log(JSON.stringify(data))
-    } catch (error) {
-        console.log(error)
-    }
-}
+// async function fecthData(){
+//     try {
+//         const {data} = await axios.get("https://v3.football.api-sports.io/teams/statistics", {
+//             headers:{
+//                 'x-rapidapi-key': process.env.XRAPIDAPIKEY,
+//                 'x-rapidapi-host': 'v3.football.api-sports.io'
+//             },
+//             params: {
+//                 "team": "41",
+//                 "season": "2021",
+//                 "league": "39"
+//                 }
+//         })
+//         console.log(JSON.stringify(data))
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
+    let data = require('../teams.json');
+    data.forEach((el) => {
+      el.createdAt = el.updatedAt = new Date();
+    })
+    await queryInterface.bulkInsert("Teams", data)
   //   await queryInterface.bulkInsert("Teams", [{
   //     "name": "Manchester United",
   //     "logo": "https://media-4.api-sports.io/football/teams/33.png",
@@ -36,7 +41,6 @@ module.exports = {
   //     "failed_to_score": 9,
   //     "authodId": 1
   // }])
-  fecthData()
     /**
      * Add seed commands here.
      *
@@ -49,6 +53,10 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
+    await queryInterface.bulkDelete("Teams", null, {
+      truncate: true,
+      restartIdentity: true
+    })
     /**
      * Add commands to revert seed here.
      *

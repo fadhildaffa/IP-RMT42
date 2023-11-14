@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Team.belongsTo(models.User)
+      Team.belongsTo(models.User, {foreignKey: "authorId"})
     }
   }
   Team.init({
@@ -36,13 +36,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: {
-          msg: "Win is required"
+          msg: "Draw is required"
         },
         notNull: {
-          msg: "Win is required"
+          msg: "Draw is required"
         },
         isNumeric:{
-          msg: "Win must be a number"
+          msg: "Draw must be a number"
         }
       }
     },
