@@ -19,7 +19,7 @@ router.post('/teams', authorizationAdd,TeamController.createTeam)
 router.get('/teams/:id', TeamController.findOne)
 router.delete('/teams/:id', authorizationEditDelete, TeamController.deleteTeam)
 router.put('/teams/:id', authorizationEditDelete, TeamController.updateTeam)
-router.patch('/teams/:id', authorizationEditDelete, upload.single('logo'),TeamController.updateLogo)
+router.patch('/teams/:id/logo', authorizationEditDelete, upload.single('logo'),TeamController.updateLogo)
 
 
 
