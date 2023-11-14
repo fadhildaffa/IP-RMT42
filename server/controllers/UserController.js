@@ -11,7 +11,7 @@ class UserController {
             if(!email) throw ({name:"NullEmail"})
             if(!password) throw ({name:"NullPassword"})
 
-            const userCreate = await User.createUser({email, password})
+            const userCreate = await User.create({email, password})
             res.status(201).json({
                 id: userCreate.id,
                 email: userCreate.email
