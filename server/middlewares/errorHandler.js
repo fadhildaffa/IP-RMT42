@@ -16,6 +16,10 @@ function errorHandler(error, req, res, next) {
             statCode = 400;
             message = ["Password is missing"];
             break;
+        case "NullFile":
+            statCode = 400;
+            message = ["File is missing"];
+            break;
         case "ErrorEmailorPassword":
             statCode = 401;
             message = ["Invalid email/password"];
