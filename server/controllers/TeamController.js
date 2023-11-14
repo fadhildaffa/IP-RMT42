@@ -22,7 +22,28 @@ class TeamContoller {
             const teams = await Team.create({name, win, draw, lose, logo, clean_sheet, goal_average, failed_to_score, authorId: req.user.id});
             res.status(201).json(teams)
         } catch (error) {
-            console.log(error)
+            next(error)
+        }
+    }
+
+    static async findOne(req, res, next){
+        try {
+            const { id } = req.params; 
+            const teams = await Team.findByPk(id);
+            if(!teams) throw ({name: "NotFound"})
+            res.status(200).json(teams)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async deleteTeam(req, res, next){
+        try {
+            const { id } = req.params; 
+            const teams = await Team.findByPk(id);
+            if(!teams) throw ({name: "NotFound"})
+            res.status(200).json({message: `Team ${teams.name} success deleted from list`})
+        } catch (error) {
             next(error)
         }
     }
