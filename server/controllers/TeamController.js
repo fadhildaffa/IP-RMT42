@@ -52,7 +52,7 @@ class TeamController {
             const team = await Team.findByPk(id);
             if(!team) throw ({name: "NotFound"});
             await team.destroy();
-            res.status(200).json({message: `Team ${teams.name} success deleted from list`})
+            res.status(200).json({message: `Team ${team.name} success deleted from list`})
         } catch (error) {
             next(error)
         }
@@ -86,7 +86,6 @@ class TeamController {
             await team.update({ logo: data.secure_url });
             res.status(200).json({ message: `Image ${team.name} succes to update` });
         } catch (error) {
-            console.log(error)
             next(error)
         }
     }
