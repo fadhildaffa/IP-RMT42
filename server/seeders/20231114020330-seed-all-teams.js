@@ -1,59 +1,59 @@
 'use strict';
-// const app = require('../app')
-
-// const axios = require('axios');
-
-// async function fecthData(){
-//     try {
-//         const {data} = await axios.get("https://v3.football.api-sports.io/teams/statistics", {
-//             headers:{
-//                 'x-rapidapi-key': process.env.XRAPIDAPIKEY,
-//                 'x-rapidapi-host': 'v3.football.api-sports.io'
-//             },
-//             params: {
-//                 "team": "41",
-//                 "season": "2021",
-//                 "league": "39"
-//                 }
-//         })
-//         console.log(JSON.stringify(data))
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-
+const app = require('../app')
+const axios = require('axios');
+const sleep = require('../helper/sleep');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
 
-    // const {data} = await axios.get("https://v3.football.api-sports.io/teams/statistics", {
-    //         headers:{
-    //             'x-rapidapi-key': process.env.XRAPIDAPIKEY,
-    //             'x-rapidapi-host': 'v3.football.api-sports.io'
-    //         },
-    //         params: {
-    //             "team": "41",
-    //             "season": "2021",
-    //             "league": "39"
-    //             }
-    //     })
-    //     console.log(JSON.stringify(data))
-    let data = require('../teams.json');
-    data.forEach((el) => {
+    let result = [];
+    let total = 53;
+    let count = 1;
+
+    for (let i = 33; i < total; i++) {
+      if (count % 10 === 0) {
+        await sleep(60000)
+      }
+
+      const { data } = await axios.get("https://v3.football.api-sports.io/teams/statistics", {
+        headers: {
+          'x-rapidapi-key': process.env.XRAPIDAPIKEY,
+          'x-rapidapi-host': 'v3.football.api-sports.io'
+        },
+        params: {
+          "team": String(i),
+          "season": "2021",
+          "league": "39"
+        }
+      })
+
+      let defaultTeam = {
+        "name": data.response.team.name,
+        "logo": data.response.team.logo,
+        "win": data.response.fixtures.wins.total,
+        "draw": data.response.fixtures.draws.total,
+        "lose": data.response.fixtures.loses.total,
+        "goal_average": Number(data.response.goals.for.average.total),
+        "clean_sheet": data.response.clean_sheet.total,
+        "failed_to_score": data.response.failed_to_score.total,
+        "authorId": 1
+      }
+      if (defaultTeam.win !== 0) {
+        result.push(defaultTeam)
+      } else {
+        total++
+      }
+      count++;
+      
+    }
+
+    result.forEach((el) => {
       el.createdAt = el.updatedAt = new Date();
     })
-    await queryInterface.bulkInsert("Teams", data)
-  //   await queryInterface.bulkInsert("Teams", [{
-  //     "name": "Manchester United",
-  //     "logo": "https://media-4.api-sports.io/football/teams/33.png",
-  //     "win": 16,
-  //     "draw": 10,
-  //     "lose": 12,
-  //     "goal_average": 1.5,
-  //     "clean_sheet": 8,
-  //     "failed_to_score": 9,
-  //     "authodId": 1
-  // }])
+
+    await queryInterface.bulkInsert("Teams", result)
+    
+
     /**
      * Add seed commands here.
      *
@@ -65,7 +65,7 @@ module.exports = {
     */
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete("Teams", null, {
       truncate: true,
       restartIdentity: true
