@@ -39,7 +39,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         isNumeric:{
           msg: "Win must be a number"
-        }
+        },
+        min: 0
       }
     },
     draw: {
@@ -54,7 +55,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         isNumeric:{
           msg: "Draw must be a number"
-        }
+        },
+        min: 0
       }
     },
     lose: {
@@ -69,7 +71,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         isNumeric:{
           msg: "Lose must be a number"
-        }
+        },
+        min: 0
       }
     },
     logo: DataTypes.STRING,
@@ -85,7 +88,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         isNumeric:{
           msg: "Clean Sheet must be a number"
-        }
+        },
+        min: 0
       }
     },
     goal_average: {
@@ -100,7 +104,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         isNumeric:{
           msg: "Average Goal must be a number"
-        }
+        },
+        min: 0
       }
     },
     failed_to_score: {
@@ -115,7 +120,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         isNumeric:{
           msg: "Fail to Score must be a number"
-        }
+        },
+        min: 0
       }
     },
     authorId: {

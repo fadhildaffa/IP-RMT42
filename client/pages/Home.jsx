@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../component/Navbar";
 const baseUrl = "http://localhost:3000"
+import Swal from "sweetalert2";
 export const Home = () => {
     const [teams, setTeam] = useState([{
         "id": 1,
@@ -150,6 +151,15 @@ export const Home = () => {
     }
 
     ]);
+    const [name, setName] = useState("")
+    const [logo, setLogo] = useState("")
+    const [win, setWin] = useState(0)
+    const [draw, setDraw] = useState(0)
+    const [lose, setLose] = useState(0)
+    const [cleanSheet, setCleanSheet] = useState(0)
+    const [goalAverage, setGoalAverage] = useState(0)
+    const [failedToScore, setFailedToScore] = useState(0)
+    const navigate = useNavigate()
     async function getData() {
         try {
             const { data } = await axios.get(baseUrl + "/teams", {
@@ -159,10 +169,66 @@ export const Home = () => {
             })
             setTeam(data)
         } catch (error) {
-            console.log(error)
+            Swal.fire({
+                title: 'Error!',
+                text: error.response.data.message,
+                icon: 'error',
+                confirmButtonText: "OK"
+            });
         }
     }
-
+    const handleAddTeam = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post(baseUrl + "/teams", {
+                name,
+                win,
+                draw,
+                lose,
+                logo,
+                clean_sheet: cleanSheet,
+                goal_average: goalAverage,
+                failed_to_score: failedToScore
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            Swal.fire({
+                title: 'Succes Add!',
+                text: "Succes Adding Team to List",
+                icon: 'success',
+                confirmButtonText: "OK"
+            });
+            getData()
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: error.response.data.message,
+                icon: 'error',
+                confirmButtonText: "OK"
+            });
+        }
+    }
+    const handleDelete = async (teamId) => {
+        try {
+            const {data} = await axios.delete(baseUrl + `/teams/${teamId}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            })
+            Swal.fire({
+                title: 'Succes Delete!',
+                text: data.message,
+                icon: 'success',
+                confirmButtonText: "OK"
+            });
+            getData()
+        } catch (error) {
+            console.log(error.response.data.message)
+        }
+        
+    }
     useEffect(() => {
         getData()
     }, [])
@@ -176,19 +242,19 @@ export const Home = () => {
                             <h1 className="flex justify-center modal-title fs-5">Add Team</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form>
+                        <form onSubmit={handleAddTeam}>
                             <div className="modal-body">
                             <div className="row">
                                     <div className="col-6">
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPassword1" className="form-label">Team Name</label>
-                                            <input type="number" className="form-control" />
+                                            <input value={name} onChange={e => {setName(e.target.value)}} type="text" className="form-control" />
                                         </div>
                                     </div>
                                     <div className="col-6">
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPassword1" className="form-label">Logo</label>
-                                            <input type="number" className="form-control" />
+                                            <input value={logo} onChange={e => {setLogo(e.target.value)}} type="text" className="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -196,13 +262,13 @@ export const Home = () => {
                                     <div className="col-6">
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPassword1" className="form-label">Win</label>
-                                            <input type="number" className="form-control" />
+                                            <input value={win} onChange={e => {setWin(e.target.value)}} type="number" className="form-control" />
                                         </div>
                                     </div>
                                     <div className="col-6">
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPassword1" className="form-label">Draw</label>
-                                            <input type="number" className="form-control" />
+                                            <input value={draw} onChange={e => {setDraw(e.target.value)}} type="number" className="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -210,13 +276,13 @@ export const Home = () => {
                                     <div className="col-6">
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Lose</label>
-                                            <input type="number" className="form-control"  aria-describedby="emailHelp" />
+                                            <input value={lose} onChange={e => {setLose(e.target.value)}} type="number" className="form-control"  aria-describedby="emailHelp" />
                                         </div>
                                     </div>
                                     <div className="col-6">
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPassword1" className="form-label">Goal Average</label>
-                                            <input type="number" className="form-control" />
+                                            <input value={goalAverage} onChange={e => {setGoalAverage(e.target.value)}} type="number" className="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -224,13 +290,13 @@ export const Home = () => {
                                     <div className="col-6">
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Clean Sheet</label>
-                                            <input type="number" className="form-control"  aria-describedby="emailHelp" />
+                                            <input value={cleanSheet} onChange={e => {setCleanSheet(e.target.value)}} type="number" className="form-control"  aria-describedby="emailHelp" />
                                         </div>
                                     </div>
                                     <div className="col-6">
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPassword1" className="form-label">Failed to Score</label>
-                                            <input type="number" className="form-control" />
+                                            <input value={failedToScore} onChange={e => {setFailedToScore(e.target.value)}} type="number" className="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -255,9 +321,9 @@ export const Home = () => {
                             <img src={el.logo} className="rounded-3xl h-72" alt={el.name} />
                             <div className="card-body">
                                 <h5 className="card-title mb-10 text-center">{el.name}</h5>
-
-                                <div className="flex justify-center">
+                                <div className="flex justify-center gap-2">
                                     <Link to={`/home/${el.id}`} ><button className="btn btn-success">See statistic</button></Link>
+                                    <button className="btn btn-danger" onClick={() => {handleDelete(el.id)}}>Delete</button>
                                 </div>
                             </div>
                         </div>
