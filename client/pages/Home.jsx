@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../component/Navbar";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-const baseUrl = "http://localhost:3000"
+const baseUrl = "https://server-p2_ip_fadhild.yoiego.my.id"
 import Swal from "sweetalert2";
 export const Home = () => {
     const [teams, setTeam] = useState([{
