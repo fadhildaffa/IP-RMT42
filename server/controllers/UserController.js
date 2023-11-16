@@ -51,15 +51,6 @@ class UserController {
             });
             const payload = ticket.getPayload();
 
-            // let user =  User.findOne({where: {email: payload.email}})
-
-            // if(!user){
-            //     user = User.create({
-            //     name: payload.name,
-            //     email: payload.email,
-            //     password: String(Math.random()),
-            // })
-            // }
             const [user, isNewRecord] = await User.findOrCreate({
                 where: {
                     email: payload.email

@@ -61,19 +61,6 @@ export const Login = () => {
         }
     }
 
-    //   useEffect(() => {
-    //     window.onload = function () {
-    //         google.accounts.id.initialize({
-    //           client_id: "981028212529-jegfjv3vhdadlkkii67tthhsv9hisjom.apps.googleusercontent.com",
-    //           callback: handleCredentialResponse
-    //         });
-    //         google.accounts.id.renderButton(
-    //           document.getElementById("buttonDiv"),
-    //           { theme: "outline", size: "large" }  // customization attributes
-    //         );
-    //         google.accounts.id.prompt(); // also display the One Tap dialog
-    //       }
-    //   }, [])
     return (
         <section id="login" >
             <div className="row bg-slate-600">
@@ -106,10 +93,15 @@ export const Login = () => {
                         <Link to='/'><button className="btn btn-outline-primary">Register</button></Link>
                         <GoogleLogin
                             onSuccess={credentialResponse => {
-                                
+                                handleCredentialResponse(credentialResponse)
                             }}
                             onError={() => {
-                                console.log('Login Failed');
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: error.response.data.message,
+                                    icon: 'error',
+                                    confirmButtonText: "OK"
+                                });
                             }}
                         />;
                     </div>

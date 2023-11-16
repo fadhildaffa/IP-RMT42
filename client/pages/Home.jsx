@@ -169,7 +169,86 @@ export const Home = () => {
     return (
         <>
             <Navbar />
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="flex justify-center modal-title fs-5">Add Team</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form>
+                            <div className="modal-body">
+                            <div className="row">
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputPassword1" className="form-label">Team Name</label>
+                                            <input type="number" className="form-control" />
+                                        </div>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputPassword1" className="form-label">Logo</label>
+                                            <input type="number" className="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputPassword1" className="form-label">Win</label>
+                                            <input type="number" className="form-control" />
+                                        </div>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputPassword1" className="form-label">Draw</label>
+                                            <input type="number" className="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Lose</label>
+                                            <input type="number" className="form-control"  aria-describedby="emailHelp" />
+                                        </div>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputPassword1" className="form-label">Goal Average</label>
+                                            <input type="number" className="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Clean Sheet</label>
+                                            <input type="number" className="form-control"  aria-describedby="emailHelp" />
+                                        </div>
+                                    </div>
+                                    <div className="col-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputPassword1" className="form-label">Failed to Score</label>
+                                            <input type="number" className="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <Link to="/home"><button className="btn btn-secondary" data-bs-dismiss="modal">Close</button></Link>
+                                <button className="btn btn-primary">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div className="bg-gradient-to-r from-green-400 to-blue-500">
+                <div className="flex ml-14 pt-14">
+                    <button className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add Team
+                    </button>
+                </div>
                 <div className="flex flex-wrap p-24 gap-7 ml-3 justify-center">
                     {teams.map((el) => (
                         <div className="card w-72" key={el.id} >
