@@ -45,9 +45,7 @@ class UserController {
         try {
             const ticket = await client.verifyIdToken({
                 idToken: req.headers.g_token,
-                audience: process.env.G_CLIENT,  // Specify the CLIENT_ID of the app that accesses the backend
-                // Or, if multiple clients access the backend:
-                //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+                audience: process.env.G_CLIENT
             });
             const payload = ticket.getPayload();
 
@@ -62,6 +60,14 @@ class UserController {
             })
             const access_token = signToken({ id: user.id })
             res.status(isNewRecord ? 201 : 200).json({ access_token })
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async updateRole (req, res, next){
+        try {
+            await req.user.update({role: "staff"})
         } catch (error) {
             next(error)
         }

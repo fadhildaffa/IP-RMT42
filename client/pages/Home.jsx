@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../component/Navbar";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 const baseUrl = "http://localhost:3000"
 import Swal from "sweetalert2";
 export const Home = () => {
@@ -159,7 +161,9 @@ export const Home = () => {
     const [cleanSheet, setCleanSheet] = useState(0)
     const [goalAverage, setGoalAverage] = useState(0)
     const [failedToScore, setFailedToScore] = useState(0)
-    const navigate = useNavigate()
+    const [show, setShow] = useState(false);
+    
+    
     async function getData() {
         try {
             const { data } = await axios.get(baseUrl + "/teams", {
@@ -225,7 +229,12 @@ export const Home = () => {
             });
             getData()
         } catch (error) {
-            console.log(error.response.data.message)
+            Swal.fire({
+                title: 'Error!',
+                text: error.response.data.message,
+                icon: 'error',
+                confirmButtonText: "OK"
+            });
         }
         
     }
@@ -235,7 +244,7 @@ export const Home = () => {
     return (
         <>
             <Navbar />
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal" tabIndex="100" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">

@@ -1,3 +1,4 @@
+const PaymentGate = require('../controllers/PaymentGate');
 const TeamController = require('../controllers/TeamController');
 const UserController = require('../controllers/UserController');
 const authentication = require('../middlewares/authentication');
@@ -17,10 +18,12 @@ router.post('/login/google', UserController.userLoginGoogle)
 router.use(authentication)
 router.get('/teams', TeamController.getTeams)
 router.post('/teams', authorizationAdd,TeamController.createTeam)
+router.get('/payment/midtrans',  PaymentGate.getMidtransToken)
 router.get('/teams/:id', TeamController.findOne)
 router.delete('/teams/:id', authorizationEditDelete, TeamController.deleteTeam)
 router.put('/teams/:id', authorizationEditDelete, TeamController.updateTeam)
 router.patch('/teams/:id/logo', authorizationEditDelete, upload.single('logo'),TeamController.updateLogo)
+router.patch('/users/role',  UserController.updateRole)
 
 
 
