@@ -1,6 +1,6 @@
 const OpenAI = require("openai");
 
-const openai = new OpenAI({ apiKey: "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" });
+const openai = new OpenAI({ apiKey: process.env.OPEN_AI });
 
 async function main() {
     const completion = await openai.chat.completions.create({
@@ -26,8 +26,11 @@ async function main() {
         stream: true
     });
     
+    let str = "";
     for await (const chunk of completion) {
         console.log(chunk.choices[0].delta.content);
+        // str += chunk.choices[0].delta.content
     }
+    // console.log(str)
 }
 main();
