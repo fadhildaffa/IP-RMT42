@@ -1,60 +1,78 @@
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom"
+import Swal from 'sweetalert2'
+import axios from "axios";
+const baseUrl = "http://localhost:3000"
 
 export const Register = () => {
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate();
 
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        try {
+            await axios({
+                url: baseUrl + "/register",
+                method: "post",
+                data: {
+                    name: name,
+                    email,
+                    password
+                }
+            })
+            navigate('/login')
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: error.response.data.message,
+                icon: 'error',
+                confirmButtonText: "OK"
+            })
+        }
+    }
     return (
         <>
             <section id="register">
-                {/* <nav className="px-1.5 py-1.5 flex bg-cyan-500">
-                    <img className="rounded-3xl w-24" src="https://d3nfwcxd527z59.cloudfront.net/content/uploads/2021/10/11091243/Lionel-Messi-Argentina-Uruguay-Dribble.jpg" alt="God Dribble level" />
-                    <div className="flex justify-center w-full text-teal-50 flex-col p-0">
-                        <div className="flex justify-center">
-                        <h1> Welcome to Club </h1>
-                        </div>
-                        <div className="flex justify-center">
-                        <p>Daftarkan dirimu untuk mengetahui prediksi siapa tim terbaik!!!</p>
-                        </div>
-                    </div>
-                    <button> ini tombol</button>
-                </nav> */}
-                <div className="row bg-slate-600 ">
-                    
+                <div className="row bg-slate-600">
                     <div className="col-6 p-3 mt-24">
-                    <div className="flex justify-center text-slate-200 text-4xl ">
-                        <h1>Welcome to the club sportsmania!!!</h1>
-                    </div>
-                    <div className="flex justify-center text-slate-200 text-2xl ">
-                        <h2>Register your data first</h2>
-                    </div>
-                        <form>
+                        <div className="flex justify-center text-slate-200 text-4xl ">
+                            <h1>Welcome to the club sportsmania!!!</h1>
+                        </div>
+                        <div className="flex justify-center text-slate-200 text-2xl ">
+                            <h2>Register your data first</h2>
+                        </div>
+                        <form onSubmit={handleRegister}>
                             <div className="flex ml-36">
                                 <label className="text-slate-200">Name</label>
                             </div>
                             <div className="flex justify-center ">
-                            <input type="text" className="flex form-control w-96 justify-center" placeholder="john doe"/>
+                                <input value={name} onChange={e => { setName(e.target.value) }} type="text" className="flex form-control w-96 justify-center" placeholder="john doe" />
                             </div>
                             <div className="flex ml-36">
                                 <label className="text-slate-200">Email</label>
                             </div>
                             <div className="flex justify-center">
-                            <input type="email" className="flex form-control w-96 justify-center" placeholder="name@example.com"/>
+                                <input value={email} onChange={e => { setEmail(e.target.value) }} type="email" className="flex form-control w-96 justify-center" placeholder="name@example.com" />
                             </div>
                             <div className="flex ml-36">
                                 <label className="text-slate-200">Password</label>
                             </div>
                             <div className="flex justify-center">
-                            <input type="password" className="flex form-control w-96 justify-center" placeholder="generate password"/>
+                                <input value={password} onChange={e => { setPassword(e.target.value) }} type="password" className="flex form-control w-96 justify-center" placeholder="generate password" />
                             </div>
                             <div className="flex justify-center mt-3">
-                            <button className="btn btn-primary w-96">Register</button>
+                                <button className="btn btn-primary w-96">Register</button>
                             </div>
                         </form>
                         <br />
                         <br />
                         <div className="ml-36 text-slate-200">
-                        <p>Are you have already account?</p>
+                            <p>Have account already?</p>
                         </div>
                         <div className="ml-36 text-slate-200">
-                        <button className="btn btn-outline-primary">Sign In</button>
+                            <Link to='/login'><button className="btn btn-outline-primary">Sign In</button></Link>
                         </div>
                     </div>
                     <div className="col-6 p-0 ">

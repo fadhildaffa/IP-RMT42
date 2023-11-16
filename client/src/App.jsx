@@ -1,11 +1,12 @@
-import { Register } from '../pages/register'
-
+import router from './route/Index'
+import { RouterProvider } from "react-router-dom";
 function App() {
 
   return (
-    <>
-    <Register />
-    </>
+    
+    
+    <RouterProvider router={router}/> 
+    
   )
 }
 
