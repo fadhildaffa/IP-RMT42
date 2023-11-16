@@ -468,7 +468,7 @@ _Response (500 - Internal Server)_
 }
 ```
 ---
-### PATCH /posts/:id/logo
+### PATCH /user/payment/midtrans
 
 > Update imgUrl using file
 
@@ -481,38 +481,30 @@ _Request Header_
 
 _Request Params_
 ```
-{
-    "id" : "integer"
-}
+not needed
 ```
 
 _Request Body (multiform/data)_
 ```
 {
-  "logo": "file"
+  midtrans: "string"
 }
 ```
 
 _Response (200 - OK)_
 ```
 {
-   "message" : "Image ${team.name} succes to update`"
+   "message" : "Payment succesfull"
 }
 ```
 _Response (400 - Bad Request)_
 ```
 {
-  "message": "file is missing"
+  "message": "payment failed"
 }
 
 ```
-_Response (404 - Not Found)_
-```
-{
-  "message": "Error not found"
-}
 
-```
 _Response (500 - Internal Server)_
 ```
 {
