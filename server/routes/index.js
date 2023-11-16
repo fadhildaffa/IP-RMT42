@@ -11,6 +11,7 @@ const upload = multer({storage});
 
 router.post('/register', UserController.createUser)
 router.post('/login', UserController.userLogin)
+router.post('/login/google', UserController.userLoginGoogle)
 
 
 router.use(authentication)

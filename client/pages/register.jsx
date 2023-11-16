@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom"
 import Swal from 'sweetalert2'
 import axios from "axios";
 const baseUrl = "http://localhost:3000"
+import { GoogleLogin } from '@react-oauth/google';
 
 export const Register = () => {
     const [name, setName] = useState("")
@@ -32,6 +33,39 @@ export const Register = () => {
             })
         }
     }
+  async function handleCredentialResponse(response) {
+        try {
+            const {data} = await axios.post(baseUrl+"/login/google", null, {
+                headers: {
+                    g_token: response.credential
+                }
+            })
+            localStorage.setItem("token", data.access_token)
+            navigate('/home')
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: error.response.data.message,
+                icon: 'error',
+                confirmButtonText: "OK"
+            })
+        }
+      }
+
+    //   useEffect(() => {
+    //     window.onload = function () {
+    //         google.accounts.id.initialize({
+    //           client_id: "981028212529-jegfjv3vhdadlkkii67tthhsv9hisjom.apps.googleusercontent.com",
+    //           callback: handleCredentialResponse
+    //         });
+    //         google.accounts.id.renderButton(
+    //           document.getElementById("buttonDiv"),
+    //           { theme: "outline", size: "large" }  // customization attributes
+    //         );
+    //         google.accounts.id.prompt(); // also display the One Tap dialog
+    //       }
+    //   }, [])
+      
     return (
         <>
             <section id="register">
@@ -69,10 +103,18 @@ export const Register = () => {
                         <br />
                         <br />
                         <div className="ml-36 text-slate-200">
-                            <p>Have account already?</p>
+                            <p>Have account already? or Login with google</p>
                         </div>
-                        <div className="ml-36 text-slate-200">
+                        <div className="flex gap-3 ml-36 text-slate-200">
                             <Link to='/login'><button className="btn btn-outline-primary">Sign In</button></Link>
+                            <GoogleLogin
+                            onSuccess={credentialResponse => {
+                                
+                            }}
+                            onError={() => {
+                                console.log('Login Failed');
+                            }}
+                        />;
                         </div>
                     </div>
                     <div className="col-6 p-0 ">

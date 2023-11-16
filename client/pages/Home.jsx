@@ -5,7 +5,7 @@ import { Navbar } from "../component/Navbar";
 const baseUrl = "http://localhost:3000"
 export const Home = () => {
     const [teams, setTeam] = useState([{
-        "id" : 1,
+        "id": 1,
         "name": "Manchester United",
         "logo": "https://media-4.api-sports.io/football/teams/33.png",
         "win": 16,
@@ -17,7 +17,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 2,
+        "id": 2,
         "name": "Liverpool",
         "logo": "https://media-4.api-sports.io/football/teams/40.png",
         "win": 28,
@@ -29,7 +29,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 3,
+        "id": 3,
         "name": "Arsenal",
         "logo": "https://media-4.api-sports.io/football/teams/41.png",
         "win": 22,
@@ -41,7 +41,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 4,
+        "id": 4,
         "name": "Tottenham",
         "logo": "https://media-4.api-sports.io/football/leagues/47.png",
         "win": 22,
@@ -53,7 +53,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 5,
+        "id": 5,
         "name": "Chelsea",
         "logo": "https://media-4.api-sports.io/football/leagues/49.png",
         "win": 21,
@@ -65,7 +65,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 6,
+        "id": 6,
         "name": "Manchester City",
         "logo": "https://media-4.api-sports.io/football/leagues/50.png",
         "win": 29,
@@ -77,7 +77,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 7,
+        "id": 7,
         "name": "Brighton",
         "logo": "https://media-4.api-sports.io/football/leagues/51.png",
         "win": 12,
@@ -89,7 +89,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 8,
+        "id": 8,
         "name": "Crystal Palace",
         "logo": "https://media-4.api-sports.io/football/leagues/52.png",
         "win": 11,
@@ -101,7 +101,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 9,
+        "id": 9,
         "name": "Newcastle",
         "logo": "https://media-4.api-sports.io/football/leagues/34.png",
         "win": 13,
@@ -113,7 +113,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 10,
+        "id": 10,
         "name": "Watford",
         "logo": "https://media-4.api-sports.io/football/leagues/35.png",
         "win": 6,
@@ -125,7 +125,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 11,
+        "id": 11,
         "name": "Wolves",
         "logo": "https://media-4.api-sports.io/football/leagues/39.png",
         "win": 15,
@@ -137,7 +137,7 @@ export const Home = () => {
         "authorId": 1
     },
     {
-        "id" : 12,
+        "id": 12,
         "name": "Southampton",
         "logo": "https://media-4.api-sports.io/football/leagues/41.png",
         "win": 9,
@@ -150,41 +150,41 @@ export const Home = () => {
     }
 
     ]);
-    async function getData(){
+    async function getData() {
         try {
-            const {data} = await axios.get(baseUrl + "/teams", {
+            const { data } = await axios.get(baseUrl + "/teams", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             })
-        setTeam(data)
+            setTeam(data)
         } catch (error) {
             console.log(error)
         }
     }
-    
+
     useEffect(() => {
         getData()
     }, [])
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div className="bg-gradient-to-r from-green-400 to-blue-500">
-            <div className="flex flex-wrap my-20 gap-4 ml-3 justify-center">
-            {teams.map((el) => (
-            <div className="card w-72" key={el.id} >
-            <img src={el.logo} className="rounded-3xl border-solid border-2 border-black" style={{minHeight: "1em", maxHeight: "10em"}} alt={el.name} />
-            <div className="card-body">
-              <h5 className="card-title mb-10 text-center">{el.name}</h5>
-                
-              <div className="flex justify-center">
-              <Link to={`/home/${el.id}`} ><button className="btn btn-success">See statistic</button></Link>   
-              </div>
+                <div className="flex flex-wrap p-24 gap-7 ml-3 justify-center">
+                    {teams.map((el) => (
+                        <div className="card w-72" key={el.id} >
+                            <img src={el.logo} className="rounded-3xl h-72" alt={el.name} />
+                            <div className="card-body">
+                                <h5 className="card-title mb-10 text-center">{el.name}</h5>
+
+                                <div className="flex justify-center">
+                                    <Link to={`/home/${el.id}`} ><button className="btn btn-success">See statistic</button></Link>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-            </div>
-            ))}
-            </div>
-          </div>
-          </>
+        </>
     )
 }
