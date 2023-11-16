@@ -28,15 +28,15 @@ module.exports = {
       })
 
       let defaultTeam = {
-        "name": data.response.team.name,
-        "logo": data.response.team.logo,
-        "win": data.response.fixtures.wins.total,
-        "draw": data.response.fixtures.draws.total,
-        "lose": data.response.fixtures.loses.total,
-        "goal_average": Number(data.response.goals.for.average.total),
-        "clean_sheet": data.response.clean_sheet.total,
-        "failed_to_score": data.response.failed_to_score.total,
-        "authorId": 1
+        name: data.response.team.name,
+        logo: data.response.team.logo,
+        win: data.response.fixtures.wins.total,
+        draw: data.response.fixtures.draws.total,
+        lose: data.response.fixtures.loses.total,
+        goal_average: Number(data.response.goals.for.average.total),
+        clean_sheet: data.response.clean_sheet.total,
+        failed_to_score: data.response.failed_to_score.total,
+        authorId: 1
       }
       if (defaultTeam.win !== 0) {
         result.push(defaultTeam)
