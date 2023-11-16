@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend } from "recharts"
 import { useNavigate, useParams } from "react-router-dom";
-const baseUrl = "http://localhost:3000"
+const baseUrl = "https://server-p2_ip_fadhild.yoiego.my.id"
 import { Navbar } from "../component/Navbar";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";

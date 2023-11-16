@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom"
 import Swal from 'sweetalert2'
 import axios from "axios";
-const baseUrl = "http://localhost:3000"
+const baseUrl = "https://server-p2_ip_fadhild.yoiego.my.id"
 import { GoogleLogin } from '@react-oauth/google';
 
 export const Register = () => {
