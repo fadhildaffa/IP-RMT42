@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.74% </span>
+                <span class="strong">84.21% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>32/51</span>
+                <span class='fraction'>32/38</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/10</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/6</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.56% </span>
+                <span class="strong">91.42% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>32/46</span>
+                <span class='fraction'>32/35</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -231,21 +231,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -324,24 +324,24 @@ class TeamController {
         }
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic async updateLogo(req, res, next){
-<span class="cstat-no" title="statement not covered" >        try {</span>
-            const { id } = <span class="cstat-no" title="statement not covered" >req.params;</span>
-<span class="cstat-no" title="statement not covered" >            if (!req.file) <span class="cstat-no" title="statement not covered" >throw ({ name: "NullFile" });</span></span>
-            const team = <span class="cstat-no" title="statement not covered" >await Team.findByPk(id);</span>
-<span class="cstat-no" title="statement not covered" >            if (!team) <span class="cstat-no" title="statement not covered" >throw ({ name: "NotFound", message: `Team with id ${id} not found` });</span></span>
-            const base64File = <span class="cstat-no" title="statement not covered" >Buffer.from(req.file.buffer).toString('base64');</span>
-            const dataURI = <span class="cstat-no" title="statement not covered" >`data:${req.file.mimetype};base64,${base64File}`;</span>
-            const data = <span class="cstat-no" title="statement not covered" >await cloudinary.uploader.upload(dataURI, {</span>
-                public_id: `${req.file.originalname}_${randomUUID()}`
-            });
+    // static async updateLogo(req, res, next){
+    //     try {
+    //         const { id } = req.params;
+    //         if (!req.file) throw ({ name: "NullFile" });
+    //         const team = await Team.findByPk(id);
+    //         if (!team) throw ({ name: "NotFound", message: `Team with id ${id} not found` });
+    //         const base64File = Buffer.from(req.file.buffer).toString('base64');
+    //         const dataURI = `data:${req.file.mimetype};base64,${base64File}`;
+    //         const data = await cloudinary.uploader.upload(dataURI, {
+    //             public_id: `${req.file.originalname}_${randomUUID()}`
+    //         });
     
-<span class="cstat-no" title="statement not covered" >            await team.update({ logo: data.secure_url });</span>
-<span class="cstat-no" title="statement not covered" >            res.status(200).json({ message: `Image ${team.name} succes to update` });</span>
-        } catch (error) {
-<span class="cstat-no" title="statement not covered" >            next(error)</span>
-        }
-    }
+    //         await team.update({ logo: data.secure_url });
+    //         res.status(200).json({ message: `Image ${team.name} succes to update` });
+    //     } catch (error) {
+    //         next(error)
+    //     }
+    // }
 &nbsp;
 }
 &nbsp;
@@ -352,7 +352,7 @@ module.exports = TeamController;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-15T04:40:45.822Z
+                at 2023-11-16T10:22:42.602Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

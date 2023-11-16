@@ -80,7 +80,7 @@ export const Detail = () => {
   const handleEdit = async (e) => {
     e.preventDefault()
     try {
-      const { data } = await axios({
+       await axios({
         method: "put",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -123,7 +123,7 @@ export const Detail = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="flex justify-center modal-title fs-5">Add Team</h1>
+              <h1 className="flex justify-center modal-title fs-5">Edit Team</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form onSubmit={handleEdit}>
@@ -199,8 +199,6 @@ export const Detail = () => {
             Edit Team
           </button>
         </div>
-        <br />
-          <h1 className="ml-60">Click Photo to update with your file</h1>
         <div className="flex justify-center p-32">
           <img className="h-80 rounded-2xl ml-7" src={detailTeam.logo} alt={detailTeam.name}  onClick={editPhoto}/>
           <div>
