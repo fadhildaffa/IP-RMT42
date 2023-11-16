@@ -71,24 +71,6 @@ class TeamController {
         }
     }
 
-    static async updateLogo(req, res, next){
-        try {
-            const { id } = req.params;
-            if (!req.file) throw ({ name: "NullFile" });
-            const team = await Team.findByPk(id);
-            if (!team) throw ({ name: "NotFound", message: `Team with id ${id} not found` });
-            const base64File = Buffer.from(req.file.buffer).toString('base64');
-            const dataURI = `data:${req.file.mimetype};base64,${base64File}`;
-            const data = await cloudinary.uploader.upload(dataURI, {
-                public_id: `${req.file.originalname}_${randomUUID()}`
-            });
-    
-            await team.update({ logo: data.secure_url });
-            res.status(200).json({ message: `Image ${team.name} succes to update` });
-        } catch (error) {
-            next(error)
-        }
-    }
 
 }
 
