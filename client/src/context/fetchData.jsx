@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import Swal from 'sweetalert2'
 // const baseUrl = "https://server-p2_ip_fadhild.yoiego.my.id"
-const baseUrl = "http://localhost:3000"
+// const baseUrl = "http://localhost:3000"
 
 
 export const TeamContext = createContext() // bikin context
