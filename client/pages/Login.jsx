@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Swal from 'sweetalert2'
 import axios from "axios";
 const baseUrl = "https://server-p2_ip_fadhild.yoiego.my.id"
+// const baseUrl = "http://localhost:3000"
 import { GoogleLogin } from '@react-oauth/google';
 
 

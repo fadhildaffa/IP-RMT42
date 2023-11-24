@@ -2,6 +2,7 @@ import axios from "axios"
 import { Link, useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
 const baseUrl = "https://server-p2_ip_fadhild.yoiego.my.id"
+// const baseUrl = "http://localhost:3000"
 export const Navbar = () => {
     const navigate = useNavigate()
     const handleLogout = () => {

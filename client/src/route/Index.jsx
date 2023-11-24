@@ -2,6 +2,7 @@ import { Home } from "../../pages/Home";
 import { Login } from "../../pages/Login";
 import { Detail } from "../../pages/Detail";
 import { Register } from "../../pages/register";
+import { TeamContextProvider } from "../context/fetchData";
 
 import { createBrowserRouter, redirect } from "react-router-dom";
 const router = createBrowserRouter([
@@ -29,8 +30,8 @@ const router = createBrowserRouter([
             return null;
         },
         children: [{
-            path: "home",
-            element: <Home />
+            path: "/home",          // => /recipes
+            element: <TeamContextProvider><Home /></TeamContextProvider> ,
         },
         {
             path: "/home/:teamId",
